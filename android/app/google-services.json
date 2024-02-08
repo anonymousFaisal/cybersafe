@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "643195997158",
+    "project_id": "cybersafe-30987",
+    "storage_bucket": "cybersafe-30987.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643195997158:android:a511f08ab5e8ba29b7a427",
+        "android_client_info": {
+          "package_name": "com.example.cybersafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbwtevD1-GukJdJfsLUI1iuptdtUgWM5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
