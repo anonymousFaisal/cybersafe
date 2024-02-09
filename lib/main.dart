@@ -1,5 +1,5 @@
+import 'package:cybersafe/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:cybersafe/pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'themes/theme_provider.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
-      home: const AuthPage(),
+      home: OnboardingScreen(),
     );
   }
 }
