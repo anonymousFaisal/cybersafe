@@ -6,7 +6,7 @@ const IntroPage3({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context){
     return Container(
-      color: Colors.green,
+      color: Colors.white,
       child: Center(
         child: Text('Page 3'),
       ),
