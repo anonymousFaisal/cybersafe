@@ -1,6 +1,7 @@
 import 'package:cybersafe/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'themes/theme_provider.dart';
 import 'firebase_options.dart';
@@ -16,6 +17,7 @@ void main() async {
       child: const MyApp(),
     ),
   );
+  Animate.restartOnHotReload = true;
 }
 
 class MyApp extends StatelessWidget {
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
-      home: OnboardingScreen(),
+      home: const OnboardingScreen(),
     );
   }
 }

@@ -1,5 +1,8 @@
+import 'package:cybersafe/pages/homescreen_page.dart';
+import 'package:cybersafe/pages/settings_page.dart';
+import 'package:cybersafe/pages/statistics_page.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,52 +12,42 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final user = FirebaseAuth.instance.currentUser!;
-
-  void signUserOut() async {
-    await FirebaseAuth.instance.signOut();
-  }
+  int _currentIndex = 0; // Set initial value to 0 for HomeScreenPage
+  final _pages = [
+    HomeScreenPage(),
+    StatisticsPage(),
+    SettingsPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Theme.of(context); // Get the current theme
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Card(
-              color: theme.cardColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 5,
-              child: ListTile(
-                leading: Icon(
-                  Icons.exit_to_app,
-                  color: theme.iconTheme.color,
-                  size: 30,
-                ),
-                title: Text(
-                  'Logout',
-                  style: TextStyle(
-                    color: theme.textTheme.bodyMedium!.color,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                onTap: () async {
-                  signUserOut();
-                },
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              ),
-            ),
-          ],
-        ),
+      body: _pages[_currentIndex],
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: theme.colorScheme.background,
+        color: theme.primaryColor,
+        animationDuration: const Duration(milliseconds: 400),
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index; // Update the index on tap
+          });
+        },
+        items: [
+          Icon(
+            Icons.home,
+            color: theme.iconTheme.color,
+          ),
+          Icon(
+            Icons.bar_chart,
+            color: theme.iconTheme.color,
+          ),
+          Icon(
+            Icons.settings,
+            color: theme.iconTheme.color,
+          ),
+        ],
       ),
     );
   }
