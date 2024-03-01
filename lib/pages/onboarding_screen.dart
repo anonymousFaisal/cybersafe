@@ -126,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ],
                       ),
                       child: Text(
-                        onLastPage ? "Done" : "Next",
+                        onLastPage ? "Let's start" : "Next",
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 18,

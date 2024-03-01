@@ -98,14 +98,6 @@ class IntroPage4 extends StatelessWidget {
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
             ],
-            child: Text(
-              "Let's start",
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-            ),
           ),
         ],
       ),
