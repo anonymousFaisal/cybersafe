@@ -1,22 +1,22 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:cybersafe/pages/levels/intro_level/intro_level_2.dart';
+import 'package:cybersafe/pages/levels/intro_level/intro_level_5.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class IntroLevel1 extends StatefulWidget {
-  const IntroLevel1({Key? key});
+class IntroLevel4 extends StatefulWidget {
+  const IntroLevel4({Key? key});
 
   @override
-  State<IntroLevel1> createState() => _IntroLevel1State();
+  State<IntroLevel4> createState() => _IntroLevel1State();
 }
 
-class _IntroLevel1State extends State<IntroLevel1> {
+class _IntroLevel1State extends State<IntroLevel4> {
   Future<void>? _startAnimationFuture;
 
   @override
   void initState() {
     super.initState();
-    _startAnimationFuture = Future.delayed(Duration(seconds: 4));
+    _startAnimationFuture = Future.delayed(Duration(seconds: 1));
   }
 
   @override
@@ -73,13 +73,7 @@ class _IntroLevel1State extends State<IntroLevel1> {
                               ),
                               SizedBox(height: 8),
                               GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => IntroLevel2()),
-                                  );
-                                },
+                                onTap: () {},
                                 child: Text(
                                   "https://surokkha-gov-bd[.]quest/verify-online/",
                                   style: TextStyle(
@@ -87,7 +81,16 @@ class _IntroLevel1State extends State<IntroLevel1> {
                                     color: Colors.blue,
                                     decoration: TextDecoration.underline,
                                   ),
-                                ),
+                                )
+                                    .animate(
+                                      onPlay: (controller) => controller.repeat(
+                                        period: Duration(seconds: 2),
+                                        reverse: true,
+                                      ),
+                                    )
+                                    .color(
+                                      curve: Curves.easeInOut,
+                                    ),
                               ),
                             ],
                           ),
@@ -128,12 +131,10 @@ class _IntroLevel1State extends State<IntroLevel1> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return AnimatedTextKit(
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                     animatedTexts: [
                       TypewriterAnimatedText(
-                        "Hey there!!!",
+                        "Hey there!!",
                         textStyle: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -149,72 +150,58 @@ class _IntroLevel1State extends State<IntroLevel1> {
                         speed: Duration(milliseconds: 40),
                       ),
                       TypewriterAnimatedText(
-                        "I will be guiding you through this journey",
+                        "Oh!!! already did that.",
                         textStyle: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
-                        speed: Duration(milliseconds: 50),
+                        speed: Duration(milliseconds: 40),
                       ),
                       TypewriterAnimatedText(
-                        "Ready to take on the cyber world? 💻",
+                        "Like I said before, the link looked sketchy",
                         textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 50),
-                      ),
-                      TyperAnimatedText(
-                        "No time to waste! Let's talk vaccines.",
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 50),
-                      ),
-                      TypewriterAnimatedText(
-                        "Did you register for your COVID-19 vaccine yet? 🦠💉",
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 50),
-                      ),
-                      TyperAnimatedText(
-                        "No? Oh boy, you're missing out on the hottest trend!",
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 50),
-                      ),
-                      TypewriterAnimatedText(
-                        "Don't worry, I think you already got a message for it. Click the link above and let's get you vaccinated!",
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 50),
-                      ),
-                      TyperAnimatedText(
-                        "Wait... does that link look a bit sketchy to you? 🤔",
-                        textStyle: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                         speed: Duration(milliseconds: 40),
                       ),
                       TypewriterAnimatedText(
-                        "Hmm... but hey, who needs trust when you've got curiosity, right? 😉",
+                        "and that's because IT IS.",
                         textStyle: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        speed: Duration(milliseconds: 40),
+                      ),
+                      TypewriterAnimatedText(
+                        "Several phishing sites and campaigns were found to target various sectors of Bangladesh. ",
+                        textStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        speed: Duration(milliseconds: 40),
+                      ),
+                      TypewriterAnimatedText(
+                        "The most targeted site was the national COVID-19 vaccination site.",
+                        textStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                         speed: Duration(milliseconds: 40),
                       ),
                     ],
                     totalRepeatCount: 1,
+                    onFinished: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => IntroLevel5()),
+                      );
+                    },
                   );
                 } else {
                   return Container();
@@ -224,14 +211,14 @@ class _IntroLevel1State extends State<IntroLevel1> {
           )
               .animate()
               .show(
-                duration: Duration(seconds: 3),
+                duration: Duration(seconds: 1),
               )
               .fadeIn(
-                delay: Duration(seconds: 3),
+                delay: Duration(seconds: 1),
                 duration: Duration(seconds: 1),
               )
               .slideX(
-                  delay: Duration(seconds: 3),
+                  delay: Duration(seconds: 1),
                   duration: Duration(seconds: 1),
                   curve: ElasticOutCurve()),
 

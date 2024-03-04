@@ -26,9 +26,9 @@ class IntroPage4 extends StatelessWidget {
                   end: 1.0,
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
-              ScaleEffect(
-                  begin: Offset(0.5, 0.5),
-                  end: Offset(1.0, 1.0),
+              SlideEffect(
+                  begin: Offset(1.0, 1.0),
+                  end: Offset(0.0, 0.0),
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
             ],
@@ -49,9 +49,9 @@ class IntroPage4 extends StatelessWidget {
                   end: 1.0,
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
-              SlideEffect(
-                  begin: Offset(-1, 0),
-                  end: Offset.zero,
+              ScaleEffect(
+                  begin: const Offset(0.5, 0.5),
+                  end: const Offset(1.0,1.0),
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
             ],
@@ -69,9 +69,9 @@ class IntroPage4 extends StatelessWidget {
                   end: 1.0,
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
-              ScaleEffect(
-                  begin: Offset(0.5, 0.5),
-                  end: Offset(1.0, 1.0),
+              SlideEffect(
+                  begin: const Offset(-1.0, -1.0),
+                  end: const Offset(0.0, 0.0),
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
             ],
@@ -93,8 +93,8 @@ class IntroPage4 extends StatelessWidget {
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
               ScaleEffect(
-                  begin: Offset(0.5, 0.5),
-                  end: Offset(1.0, 1.0),
+                  begin: const Offset(0.5, 0.5),
+                  end: const Offset(1.0, 1.0),
                   curve: Curves.easeInOut,
                   duration: 2000.milliseconds),
             ],

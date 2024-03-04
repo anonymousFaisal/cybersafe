@@ -1,8 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:cybersafe/animation/slide_animation.dart';
-import 'package:cybersafe/animation/scale_animation.dart';
 
 class IntroPage1 extends StatelessWidget {
   const IntroPage1({super.key});
@@ -22,49 +22,50 @@ class IntroPage1 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //* Slide animation
-          SlideAnimation(
-            direction: SlideDirection.left,
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.easeInOut,
-            child: Text(
-              'Did you know?',
-              style: GoogleFonts.indieFlower(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+          AnimatedTextKit(
+            animatedTexts: [
+              TypewriterAnimatedText(
+                speed: const Duration(milliseconds: 150),
+                "Did you know?",
+                textStyle: GoogleFonts.indieFlower(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
               ),
-            ),
+            ],
+            totalRepeatCount: 1,
           ),
           const SizedBox(height: 20),
           //* Slide animation
-          SlideAnimation(
-            direction: SlideDirection.right,
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.easeInOut,
-            child: Text(
-              'Over 200 million phishing attempts are made worldwide each year.',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
+          Text(
+            'Over 200 million phishing attempts are made worldwide each year.',
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              color: Colors.white,
             ),
-          ),
+            textAlign: TextAlign.center,
+          ).animate().slideX(
+                duration: const Duration(seconds: 2),
+                curve: Curves.fastOutSlowIn,
+              ),
           const SizedBox(height: 40),
 
           //* Animated Lottie animation
           //* Scale transition
-          ScaleAnimation(
-            initialScale: 0.5,
-            finalScale: 1.6,
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.easeInSine,
+          Container(
             child: Lottie.asset(
               'assets/animations/world_pointer.json',
               width: 300,
               height: 300,
             ),
-          ),
+          ).animate().scale(
+                duration: const Duration(seconds: 3),
+                begin: const Offset(0.3, 0.3),
+                end: const Offset(1.6, 1.6),
+                curve: const ElasticOutCurve(0.45),
+              ),
         ],
       ),
     );

@@ -1,8 +1,7 @@
-import 'package:cybersafe/animation/scale_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:cybersafe/animation/slide_animation.dart';
 
 class IntroPage3 extends StatelessWidget {
   const IntroPage3({Key? key}) : super(key: key);
@@ -22,49 +21,48 @@ class IntroPage3 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //* Slide animation
-          SlideAnimation(
-            direction: SlideDirection.left,
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.easeInOut,
-            child: Text(
-              'Recognizing Phishing Attempts',
-              style: GoogleFonts.indieFlower(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+          Text(
+            'Recognizing Phishing Attempts',
+            style: GoogleFonts.indieFlower(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-          ),
+          ).animate().slideX(
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeInOut,
+                begin: -1.0,
+              ),
           const SizedBox(height: 20),
           //* Slide animation
-          SlideAnimation(
-            direction: SlideDirection.right,
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.easeInOut,
-            child: Text(
-              'Learning to recognize phishing attempts is crucial for protecting yourself online.',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
+          Text(
+            'Learning to recognize phishing attempts is crucial for protecting yourself online.',
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              color: Colors.white,
             ),
-          ),
+            textAlign: TextAlign.center,
+          ).animate().slideX(
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeInOut,
+                begin: 1.0,
+              ),
           const SizedBox(height: 40),
 
           //* Animated Lottie animation
           //* Scale transition
-          ScaleAnimation(
-            initialScale: 0.5,
-            finalScale: 1.2,
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.easeInSine,
+          Container(
             child: Lottie.asset(
               'assets/animations/security.json',
               width: 300,
               height: 300,
             ),
-          ),
+          ).animate().scale(
+                duration: const Duration(seconds: 3),
+                begin: const Offset(0.3, 0.3),
+                end: const Offset(1.2, 1.2),
+                curve: const ElasticOutCurve(0.45),
+              ),
         ],
       ),
     );
