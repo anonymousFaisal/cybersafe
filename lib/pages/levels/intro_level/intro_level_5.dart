@@ -1,3 +1,4 @@
+import 'package:cybersafe/pages/login_or_register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,13 +11,8 @@ class IntroLevel5 extends StatefulWidget {
 }
 
 class _IntroLevel3State extends State<IntroLevel5> {
-  Future<void>? _startAnimationFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _startAnimationFuture = Future.delayed(Duration(seconds: 1));
-  }
+  String _longPressed = "";
+  bool _paymentFound = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +33,33 @@ class _IntroLevel3State extends State<IntroLevel5> {
             const SizedBox(
               width: 20,
             ),
-            const Text(
-              'Payment Option',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            GestureDetector(
+              onLongPress: () {
+                setState(() {
+                  _longPressed = "payment";
+                  _paymentFound = true;
+                });
+              },
+              child: Animate(
+                effects: _paymentFound
+                    ? [
+                        ScaleEffect(
+                          curve: ElasticOutCurve(),
+                          duration: Duration(seconds: 1),
+                        ),
+                        ShimmerEffect(
+                          duration: Duration(seconds: 10),
+                          color: Colors.white60,
+                        ),
+                      ]
+                    : null,
+                child: Text(
+                  'Payment Option',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ),
           ],
@@ -67,8 +85,12 @@ class _IntroLevel3State extends State<IntroLevel5> {
                   textColor: Colors.black),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  // Add payment logic here
+                onPressed: () {},
+                onLongPress: () {
+                  setState(() {
+                    _longPressed = "payment";
+                    _paymentFound = true;
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
@@ -79,8 +101,8 @@ class _IntroLevel3State extends State<IntroLevel5> {
               const SizedBox(height: 20),
               //* Game dialogue
               Container(
-                margin: const EdgeInsets.fromLTRB(15, 30, 15, 15),
-                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                padding: const EdgeInsets.all(10),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.orange,
@@ -94,73 +116,87 @@ class _IntroLevel3State extends State<IntroLevel5> {
                     ),
                   ],
                 ),
-                child: FutureBuilder(
-                  future: _startAnimationFuture,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      return AnimatedTextKit(
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                            "Phishing sites, leveraging fake messages and URLs, exploited users by stealing their data ",
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            speed: Duration(milliseconds: 50),
-                          ),
-                          TypewriterAnimatedText(
-                            "and implementing paywalls to deceive individuals with limited knowledge in such matters.",
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            speed: Duration(milliseconds: 50),
-                          ),
-                          TypewriterAnimatedText(
-                            "These fraudulent activities resulted in substantial data breaches and financial losses for unsuspecting victims.",
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            speed: Duration(milliseconds: 50),
-                          ),
-                          TypewriterAnimatedText(
-                            "This is just one of the many phishing attempts happening all over the world.",
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            speed: Duration(milliseconds: 50),
-                          ),
-                          TypewriterAnimatedText(
-                            "Are you knowledgeable enough to detect them all?",
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            speed: Duration(milliseconds: 50),
-                          ),
-                          TypewriterAnimatedText(
-                            "Well, let's try. Welcome to CyberSafe!",
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            speed: Duration(milliseconds: 50),
-                          ),
-                        ],
-                        totalRepeatCount: 1,
-                      );
-                    } else {
-                      return Container();
-                    }
-                  },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Avatar column
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/animations/avatar1.gif',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 16),
+                    // Text column
+                    Expanded(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _longPressed == "payment" && _paymentFound
+                                ? AnimatedTextKit(
+                                    key: ValueKey<String>(_longPressed),
+                                    animatedTexts: [
+                                      TypewriterAnimatedText(
+                                        "That's right. There shouldn't be any payment option for Surokkha",
+                                        textStyle: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                        speed: Duration(milliseconds: 50),
+                                      ),
+                                      TypewriterAnimatedText(
+                                        "It's a government site. So regestrations are free.",
+                                        textStyle: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                        speed: Duration(milliseconds: 50),
+                                      ),
+                                    ],
+                                    totalRepeatCount: 1,
+                                    onFinished: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              LoginOrRegisterPage(),
+                                        ),
+                                      );
+                                    },
+                                  )
+                                : AnimatedTextKit(
+                                    key: ValueKey<String>(_longPressed),
+                                    animatedTexts: [
+                                      TypewriterAnimatedText(
+                                        "Lastly, can u guess what's wrong with this page?",
+                                        textStyle: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                        speed: Duration(milliseconds: 50),
+                                      ),
+                                      TypewriterAnimatedText(
+                                        "Again you can long press the section that seems suspicious.",
+                                        textStyle: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                        speed: Duration(milliseconds: 50),
+                                      ),
+                                    ],
+                                    totalRepeatCount: 1,
+                                  ),
+                          ]),
+                    )
+                  ],
                 ),
               )
                   .animate()
@@ -173,7 +209,7 @@ class _IntroLevel3State extends State<IntroLevel5> {
                   )
                   .slideX(
                       delay: Duration(seconds: 1),
-                      duration: Duration(seconds: 1),
+                      duration: Duration(seconds: 2),
                       curve: ElasticOutCurve()),
             ],
           ),

@@ -7,16 +7,68 @@ class IntroLevel4 extends StatefulWidget {
   const IntroLevel4({Key? key});
 
   @override
-  State<IntroLevel4> createState() => _IntroLevel1State();
+  State<IntroLevel4> createState() => _IntroLevel4State();
 }
 
-class _IntroLevel1State extends State<IntroLevel4> {
-  Future<void>? _startAnimationFuture;
+class _IntroLevel4State extends State<IntroLevel4> {
+  String _longPressed = "";
+  bool _linkFound = false;
+  bool _numberFound = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _startAnimationFuture = Future.delayed(Duration(seconds: 1));
+  void _showAlertDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          backgroundColor: Colors.white,
+          title: Text(
+            "Can You Find Them All?",
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Press and hold the section that seems suspicious.",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(height: 10),
+              Image.asset(
+                'assets/animations/press_and_hold.gif',
+                fit: BoxFit.cover,
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Center(
+                child: Text(
+                  'I Got It',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -25,14 +77,38 @@ class _IntroLevel1State extends State<IntroLevel4> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Icon(Icons.phone_android),
             SizedBox(width: 10),
-            Text(
-              '+123456789',
-              style: TextStyle(fontSize: 16),
+            GestureDetector(
+              onLongPress: _numberFound
+                  ? null
+                  : () {
+                      setState(() {
+                        _longPressed = "number";
+                        _numberFound = true;
+                      });
+                    },
+              child: Animate(
+                effects: _numberFound
+                    ? [
+                        ScaleEffect(
+                          curve: ElasticOutCurve(),
+                          duration: Duration(seconds: 1),
+                        ),
+                        ShimmerEffect(
+                          duration: Duration(seconds: 10),
+                          color: theme.colorScheme.secondary,
+                        ),
+                      ]
+                    : null,
+                child: Text(
+                  '+123456789',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
             ),
           ],
         ),
@@ -73,24 +149,36 @@ class _IntroLevel1State extends State<IntroLevel4> {
                               ),
                               SizedBox(height: 8),
                               GestureDetector(
-                                onTap: () {},
-                                child: Text(
-                                  "https://surokkha-gov-bd[.]quest/verify-online/",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.blue,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                )
-                                    .animate(
-                                      onPlay: (controller) => controller.repeat(
-                                        period: Duration(seconds: 2),
-                                        reverse: true,
-                                      ),
-                                    )
-                                    .color(
-                                      curve: Curves.easeInOut,
+                                onLongPress: _linkFound
+                                    ? null
+                                    : () {
+                                        setState(() {
+                                          _longPressed = "link";
+                                          _linkFound = true;
+                                        });
+                                      },
+                                child: Animate(
+                                  effects: _linkFound
+                                      ? [
+                                          ScaleEffect(
+                                            curve: ElasticOutCurve(),
+                                            duration: Duration(seconds: 1),
+                                          ),
+                                          ShimmerEffect(
+                                            duration: Duration(seconds: 10),
+                                            color: theme.colorScheme.secondary,
+                                          ),
+                                        ]
+                                      : null,
+                                  child: Text(
+                                    "https://surokkha-gov-bd[.]quest/verify-online/",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
                                     ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -111,8 +199,8 @@ class _IntroLevel1State extends State<IntroLevel4> {
           ),
           //* Game dialogue
           Container(
-            margin: const EdgeInsets.fromLTRB(15, 30, 15, 15),
-            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+            padding: const EdgeInsets.all(10),
             width: double.infinity,
             decoration: BoxDecoration(
               color: theme.colorScheme.primary,
@@ -126,87 +214,154 @@ class _IntroLevel1State extends State<IntroLevel4> {
                 ),
               ],
             ),
-            child: FutureBuilder(
-              future: _startAnimationFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return AnimatedTextKit(
-                    onTap: () {},
-                    animatedTexts: [
-                      TypewriterAnimatedText(
-                        "Hey there!!",
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        speed: Duration(milliseconds: 40),
-                      ),
-                      TypewriterAnimatedText(
-                        "I'm the narrator.",
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        speed: Duration(milliseconds: 40),
-                      ),
-                      TypewriterAnimatedText(
-                        "Oh!!! already did that.",
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 40),
-                      ),
-                      TypewriterAnimatedText(
-                        "Like I said before, the link looked sketchy",
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 40),
-                      ),
-                      TypewriterAnimatedText(
-                        "and that's because IT IS.",
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 40),
-                      ),
-                      TypewriterAnimatedText(
-                        "Several phishing sites and campaigns were found to target various sectors of Bangladesh. ",
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 40),
-                      ),
-                      TypewriterAnimatedText(
-                        "The most targeted site was the national COVID-19 vaccination site.",
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 40),
-                      ),
-                    ],
-                    totalRepeatCount: 1,
-                    onFinished: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => IntroLevel5()),
-                      );
-                    },
-                  );
-                } else {
-                  return Container();
-                }
-              },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Avatar column
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/animations/avatar1.gif',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    )
+                  ],
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _longPressed == "link" && _linkFound
+                            ? AnimatedTextKit(
+                                key: ValueKey<String>(_longPressed),
+                                animatedTexts: [
+                                  TypewriterAnimatedText(
+                                    "I knew that link looked suspicious.",
+                                    textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    speed: Duration(milliseconds: 40),
+                                  ),
+                                  TypewriterAnimatedText(
+                                    "Using brackets [.] instead of a literal period is a technique used by phishers.",
+                                    textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    speed: Duration(milliseconds: 40),
+                                  ),
+                                  TypewriterAnimatedText(
+                                    "Phishers often use subdomains like 'verify-online' that sound plausible but are misleading.",
+                                    textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    speed: Duration(milliseconds: 40),
+                                  ),
+                                  TypewriterAnimatedText(
+                                    "Good job finding it 👏",
+                                    textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    speed: Duration(milliseconds: 40),
+                                  ),
+                                ],
+                                totalRepeatCount: 1,
+                                onFinished: _numberFound
+                                    ? () {
+                                        setState(() {
+                                          _longPressed = "";
+                                        });
+                                      }
+                                    : null,
+                              )
+                            : _longPressed == 'number' && _numberFound
+                                ? AnimatedTextKit(
+                                    key: ValueKey<String>(_longPressed),
+                                    animatedTexts: [
+                                      TypewriterAnimatedText(
+                                        "Yeah the number was actually randomly selected🙄",
+                                        textStyle: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        speed: Duration(milliseconds: 40),
+                                      ),
+                                      TypewriterAnimatedText(
+                                        "But hey good job finding it. Anything else?",
+                                        textStyle: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        speed: Duration(milliseconds: 40),
+                                      ),
+                                    ],
+                                    totalRepeatCount: 1,
+                                    onFinished: _linkFound
+                                        ? () {
+                                            setState(() {
+                                              _longPressed = "";
+                                            });
+                                          }
+                                        : null,
+                                  )
+                                : _linkFound && _numberFound
+                                    ? AnimatedTextKit(
+                                        key: ValueKey<bool>(
+                                            _linkFound && _numberFound),
+                                        animatedTexts: [
+                                          TypewriterAnimatedText(
+                                            "Great job! You found both suspicious elements.",
+                                            textStyle: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            speed: Duration(milliseconds: 40),
+                                          ),
+                                        ],
+                                        onFinished: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  IntroLevel5(),
+                                            ),
+                                          );
+                                        },
+                                        totalRepeatCount: 1,
+                                      )
+                                    : AnimatedTextKit(
+                                        key: ValueKey<String>(_longPressed),
+                                        animatedTexts: [
+                                          TypewriterAnimatedText(
+                                            "Let's recheck the message first.",
+                                            textStyle: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            speed: Duration(milliseconds: 70),
+                                          ),
+                                          TypewriterAnimatedText(
+                                            "Can u see anything suspicious?",
+                                            textStyle: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            speed: Duration(milliseconds: 70),
+                                          ),
+                                        ],
+                                        onFinished: () {
+                                          _showAlertDialog();
+                                        },
+                                        totalRepeatCount: 1,
+                                      ),
+                      ]),
+                )
+              ],
             ),
           )
               .animate()
@@ -219,7 +374,7 @@ class _IntroLevel1State extends State<IntroLevel4> {
               )
               .slideX(
                   delay: Duration(seconds: 1),
-                  duration: Duration(seconds: 1),
+                  duration: Duration(seconds: 2),
                   curve: ElasticOutCurve()),
 
           //* Text Input Field and Send Button
@@ -235,7 +390,7 @@ class _IntroLevel1State extends State<IntroLevel4> {
                 Expanded(
                   child: TextField(
                     cursorColor: theme.colorScheme.secondary,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Type your message...',
                       border: InputBorder.none,
                     ),

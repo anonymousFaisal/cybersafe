@@ -165,24 +165,8 @@ class _IntroLevel1State extends State<IntroLevel1> {
                         ),
                         speed: Duration(milliseconds: 50),
                       ),
-                      TyperAnimatedText(
-                        "No time to waste! Let's talk vaccines.",
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 50),
-                      ),
                       TypewriterAnimatedText(
                         "Did you register for your COVID-19 vaccine yet? 🦠💉",
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                        speed: Duration(milliseconds: 50),
-                      ),
-                      TyperAnimatedText(
-                        "No? Oh boy, you're missing out on the hottest trend!",
                         textStyle: TextStyle(
                           fontSize: 18,
                           color: Colors.white,

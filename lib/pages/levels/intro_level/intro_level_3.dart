@@ -147,15 +147,6 @@ class _IntroLevel3State extends State<IntroLevel3> {
                             speed: Duration(milliseconds: 40),
                           ),
                           TypewriterAnimatedText(
-                            "I had a hunch that link seemed sketchy.",
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            speed: Duration(milliseconds: 40),
-                          ),
-                          TypewriterAnimatedText(
                             "Let's circle back and review the info we've got.",
                             textStyle: TextStyle(
                               fontSize: 20,
