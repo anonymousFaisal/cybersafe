@@ -1,4 +1,4 @@
-import 'package:cybersafe/pages/login_or_register_page.dart';
+import 'package:cybersafe/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -165,7 +165,7 @@ class _IntroLevel3State extends State<IntroLevel5> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              LoginOrRegisterPage(),
+                                              AuthPage(),
                                         ),
                                       );
                                     },

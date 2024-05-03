@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0; // Set initial value to 0 for HomeScreenPage
+  int _currentIndex = 0;
   final _pages = [
     HomeScreenPage(),
     StatisticsPage(),
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context); // Get the current theme
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: _pages[_currentIndex],
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         animationDuration: const Duration(milliseconds: 400),
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Update the index on tap
+            _currentIndex = index;
           });
         },
         items: [

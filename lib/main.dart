@@ -1,6 +1,4 @@
-import 'package:cybersafe/pages/levels/intro_level/intro_level_4.dart';
-import 'package:cybersafe/pages/levels/intro_level/intro_level_5.dart';
-import 'package:cybersafe/pages/onboarding_screen.dart';
+import 'package:cybersafe/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
-      home: const IntroLevel4(),
+      home: const AuthPage(),
     );
   }
 }
