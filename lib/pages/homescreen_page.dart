@@ -1,8 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cybersafe/components/custom_drawer.dart';
 import 'package:cybersafe/components/daily_tips_slider.dart';
+import 'package:cybersafe/components/scenerio_level_selection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreenPage extends StatefulWidget {
@@ -29,12 +32,6 @@ class _HomeScreenPageState extends State<HomeScreenPage>
     } else {
       greeting = "Good Evening!";
     }
-
-    List<String> dailyTips = [
-      "Always update your apps.",
-      "Use strong, unique passwords.",
-      "Be cautious with links and attachments.",
-    ];
 
     return Scaffold(
       backgroundColor: theme.colorScheme.background,
@@ -101,7 +98,7 @@ class _HomeScreenPageState extends State<HomeScreenPage>
                         ),
                       ],
                       repeatForever: false,
-                      pause: const Duration(seconds: 3),
+                      pause: const Duration(seconds: 2),
                     ),
                   ),
                 ],
@@ -124,6 +121,7 @@ class _HomeScreenPageState extends State<HomeScreenPage>
           ),
           SliverList(
             delegate: SliverChildListDelegate([
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -149,9 +147,65 @@ class _HomeScreenPageState extends State<HomeScreenPage>
                         fontSize: 20,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 50),
                     //* Daily Tips Slider
-                    DailyTipsSlider(dailyTips: dailyTips),
+                    DailyTipsSlider(),
+                    //* Level selection
+                    ScenarioBasedLevels(),
+                    const Gap(20),
+                    //* Continue
+                    Text(
+                      "Continue your journey",
+                      style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Gap(10),
+                    InkWell(
+                      child: Card(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        margin: const EdgeInsets.only(bottom: 16.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Recently Completed",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: theme.textTheme.bodyLarge!.color,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Covid-19 Message",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        color: theme.secondaryHeaderColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 24,
+                                color: theme.iconTheme.color,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -1,3 +1,5 @@
+import 'package:cybersafe/pages/home_page.dart';
+import 'package:cybersafe/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -73,7 +75,10 @@ class _CustomDrawerState extends State<CustomDrawer>
                   ),
                   title: Text('Home', style: GoogleFonts.poppins(fontSize: 16)),
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
                   },
                 ),
                 ListTile(
@@ -94,7 +99,10 @@ class _CustomDrawerState extends State<CustomDrawer>
                   title: Text('Settings',
                       style: GoogleFonts.poppins(fontSize: 16)),
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SettingsPage()),
+                    );
                   },
                 ),
               ],

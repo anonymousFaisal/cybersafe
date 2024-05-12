@@ -1,4 +1,5 @@
 import 'package:cybersafe/pages/auth_page.dart';
+import 'package:cybersafe/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_animate/flutter_animate.dart';

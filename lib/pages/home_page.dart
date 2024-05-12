@@ -1,11 +1,11 @@
 import 'package:cybersafe/pages/homescreen_page.dart';
-import 'package:cybersafe/pages/settings_page.dart';
-import 'package:cybersafe/pages/statistics_page.dart';
+import 'package:cybersafe/pages/levels/level_page.dart';
+import 'package:cybersafe/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -14,9 +14,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final _pages = [
-    HomeScreenPage(),
-    StatisticsPage(),
-    SettingsPage(),
+    const HomeScreenPage(),
+    const LevelPage(),
+    ProfilePage(),
   ];
 
   @override
@@ -40,11 +40,11 @@ class _HomePageState extends State<HomePage> {
             color: theme.iconTheme.color,
           ),
           Icon(
-            Icons.bar_chart,
+            Icons.window_rounded,
             color: theme.iconTheme.color,
           ),
           Icon(
-            Icons.settings,
+            Icons.person,
             color: theme.iconTheme.color,
           ),
         ],

@@ -1,10 +1,23 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DailyTipsSlider extends StatelessWidget {
-  final List<String> dailyTips;
-
-  DailyTipsSlider({required this.dailyTips});
+  final List<String> dailyTips = [
+    "Be wary of unsolicited emails.",
+    "Use email filters to block suspicious emails.",
+    "Check email sender addresses for discrepancies.",
+    "Look for phishing signs in emails.",
+    "Hover over links in emails to see the actual URL.",
+    "Enable two-factor authentication (2FA).",
+    "Regularly update devices and apps.",
+    "Use a VPN on public Wi-Fi networks.",
+    "Install and update antivirus software.",
+    "Backup your data regularly.",
+    "Limit the information you share online.",
+    "Regularly check accounts for unauthorized activity.",
+    "Use secure and private browsing modes.",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +58,8 @@ class DailyTipsSlider extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 "Tip of the Day",
-                                style: TextStyle(
-                                  fontSize: 22,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: theme.colorScheme.onPrimary,
                                 ),
@@ -55,13 +68,17 @@ class DailyTipsSlider extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        Text(
-                          tip,
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: theme.textTheme.titleMedium!.color,
-                          ),
+                        Wrap(
+                          children: <Widget>[
+                            Text(
+                              tip,
+                              textAlign: TextAlign.start,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                color: theme.textTheme.bodyMedium!.color,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

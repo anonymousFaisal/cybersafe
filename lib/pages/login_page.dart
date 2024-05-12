@@ -4,6 +4,7 @@ import 'package:cybersafe/components/my_textfield.dart';
 import 'package:cybersafe/components/my_button.dart';
 import 'package:cybersafe/components/square_tile.dart';
 import 'package:cybersafe/services/auth_service.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -57,10 +58,10 @@ class _LoginPageState extends State<LoginPage> {
         return AlertDialog(
           backgroundColor: Colors.black,
           title: Center(
-            child: Text(
-              message,
-              style:  const TextStyle(color: Colors.white,)
-            ),
+            child: Text(message,
+                style: const TextStyle(
+                  color: Colors.white,
+                )),
           ),
         );
       },
@@ -104,7 +105,11 @@ class _LoginPageState extends State<LoginPage> {
                   controller: emailController,
                   hintText: 'E-mail',
                   obsecureText: false,
-                ),
+                ).animate().slideX(
+                      curve: ElasticOutCurve(),
+                      duration: Duration(seconds: 2),
+                      begin: -0.5,
+                    ),
 
                 const SizedBox(height: 10),
                 //password textfield
@@ -112,7 +117,11 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   hintText: 'Password',
                   obsecureText: true,
-                ),
+                ).animate().slideX(
+                      curve: ElasticOutCurve(),
+                      duration: Duration(seconds: 2),
+                      begin: 0.5,
+                    ),
                 const SizedBox(height: 10),
                 //forgot password
                 Padding(
@@ -122,7 +131,8 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Text(
                         'Forgot Password',
-                        style: TextStyle(color: theme.textTheme.titleSmall!.color),
+                        style:
+                            TextStyle(color: theme.textTheme.titleSmall!.color),
                       ),
                     ],
                   ),
@@ -151,7 +161,8 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
                         'One Tap Sign In',
-                        style: TextStyle(color: theme.textTheme.bodyLarge!.color),
+                        style:
+                            TextStyle(color: theme.textTheme.bodyLarge!.color),
                       ),
                     ),
                     Expanded(
@@ -185,7 +196,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       'Not a member?',
-                      style: TextStyle(color: theme.textTheme.titleSmall!.color),
+                      style:
+                          TextStyle(color: theme.textTheme.titleSmall!.color),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
